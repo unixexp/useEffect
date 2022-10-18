@@ -36,5 +36,13 @@ It means that hook `useEffect` will be called after render process but only if `
 So hook will be called.
 In this case `useEffect` function is working like a `ComponentDidUpdate` hook.
 
-Next step it is the same as after component initialize.
-Setting state `loadin`, load cars, render...
+Next step it is nearly the same as after component initialize
+except that this time before call hook (setting state `loading`, load cars, render...),
+React call arrow function returned by previous hook. This function
+set `canceled` variable of previous hook to `true`. Simple words it changing
+previous hook behavior when car was loaded. It take place if user not wait
+end of car load process and changed to next car. It prevent display result
+of previous car and will display only last load result.
+
+Return cleaning function can using for additional logic. For example to
+remove EventListeners, added by useEffect.

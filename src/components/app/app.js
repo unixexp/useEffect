@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 
 const App = () => {
 
+    // Every time when component should be re-rendered React call
+    // component function from here
+
     const cars = ["Toyota", "Honda", "Ferrari", "BMW", "Opel", "Nissan"]
     const [ carId, setCarId ] = useState(0)
     const [ car, setCar ] = useState(null)
