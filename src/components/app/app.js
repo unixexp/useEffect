@@ -19,18 +19,18 @@ const App = () => {
     }
 
     useEffect(() => {
-        let randomNumber = Math.floor(Math.random() * 100)
         let canceled = false
-        console.log(`useEffect: ${randomNumber}`)
+        const effectCarId = carId
+        const loadDelay = 3000
+
         console.log("Set loading = true")
         setLoading(true)
         
-        console.log("Run loading Promise")
-
+        console.log(`Loading car with id ${effectCarId}`)
         new Promise((resolve, reject) => {
             setTimeout(() => {
                 resolve(cars[carId])
-            }, 5000)
+            }, loadDelay)
         }).then(car => {
             if (!canceled) {
                 console.log(`Loaded car "${car}"`)
@@ -41,7 +41,10 @@ const App = () => {
             }
         })
 
-        return () => { canceled = true }
+        return () => {
+            console.log(`Canceling display car with id '${effectCarId}' after loading`)
+            canceled = true
+        }
     }, [carId])
 
     return (
